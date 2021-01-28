@@ -98,7 +98,8 @@ open class PullToRefresh: NSObject {
                 if isCurrentlyVisible {
                     animateFinishedState()
                 } else {
-                    scrollView?.contentInset = self.scrollViewDefaultInsets
+                    // no required bounce back
+//                    scrollView?.contentInset = self.scrollViewDefaultInsets
                     state = .initial
                 }
 
@@ -295,7 +296,7 @@ private extension PullToRefresh {
             return
         }
         
-        scrollView.contentOffset = previousScrollViewOffset
+//        scrollView.contentOffset = previousScrollViewOffset
         scrollView.bounces = false
         UIView.animate(
             withDuration: 0.3,
@@ -322,20 +323,23 @@ private extension PullToRefresh {
     
     func animateFinishedState() {
         removeScrollViewObserving()
-        UIView.animate(
-            withDuration: animationDuration,
-            delay: hideDelay,
-            usingSpringWithDamping: springDamping,
-            initialSpringVelocity: initialSpringVelocity,
-            options: animationOptions,
-            animations: {
-                self.scrollView?.contentInset = self.scrollViewDefaultInsets
-            },
-            completion: { _ in
-                self.addScrollViewObserving()
-                self.state = .initial
-            }
-        )
+//        UIView.animate(
+//            withDuration: animationDuration,
+//            delay: hideDelay,
+//            usingSpringWithDamping: springDamping,
+//            initialSpringVelocity: initialSpringVelocity,
+//            options: animationOptions,
+//            animations: {
+//                self.scrollView?.contentInset = self.scrollViewDefaultInsets
+//            },
+//            completion: { _ in
+//                self.addScrollViewObserving()
+//                self.state = .initial
+//            }
+//        )
+        
+        self.addScrollViewObserving()
+        self.state = .initial
     }
 }
 
