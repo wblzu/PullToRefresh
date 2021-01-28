@@ -296,7 +296,7 @@ private extension PullToRefresh {
             return
         }
         
-//        scrollView.contentOffset = previousScrollViewOffset
+//        scrollView.contentOffset = previousScrollViewOffset // this will cause jitter
         scrollView.bounces = false
         UIView.animate(
             withDuration: 0.3,
@@ -322,7 +322,7 @@ private extension PullToRefresh {
     }
     
     func animateFinishedState() {
-        removeScrollViewObserving()
+//        removeScrollViewObserving()
 //        UIView.animate(
 //            withDuration: animationDuration,
 //            delay: hideDelay,
@@ -338,7 +338,6 @@ private extension PullToRefresh {
 //            }
 //        )
         
-        self.addScrollViewObserving()
         self.state = .initial
     }
 }
